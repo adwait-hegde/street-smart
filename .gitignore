@@ -2,7 +2,6 @@ dnn_model/
 __pycache__/
 EmergencyVehicleDetection/
 1. Training.ipynb
-images/
 Train/
 Validation/
 temp.py
