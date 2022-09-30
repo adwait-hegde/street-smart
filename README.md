@@ -11,6 +11,7 @@ Figure shows how the system is organised. The CCTV camera, which may be seen in 
 
 
 Initially, the CCTV camera will record footage of all four lanes of the traffic circle. The values will be read frame by frame in the real-time video of these roadways. All of the input frames that are captured by the camera are sent to the server. A background algorithm filters the video after it is received to determine how many cars are in each lane. The timer is then properly set once each lane is prioritised according to threshold values. Containers or buses will have a higher density than vehicles since vehicle classification and wheel count are taken into account when calculating density for transportation vehicles. Here, the total density of each lane is calculated. Every two seconds, the vehicle density in each lane is calculated.
+
 ![vehicle_detection](images/vehicle_detection.png)
 ![emergency_vehicle](images/emergency_vehicle.png)
 
@@ -34,3 +35,12 @@ For defuzzification many functions like mean of maxima, min of maxima, max of ma
 
 Comparison between prevailing system and proposed fuzzy system.
 ![chart](images/chart.png)
+
+<br />
+
+**Tech Stack**: Flask, HTML, Bootstrap, JavaScript, SkFuzzy, Tensorflow
+
+<br />
+
+#### This project was done by: 
+Ojas Patil, Adwait Hegde, Soham Belurgikar
