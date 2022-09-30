@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <title>Street Smart</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark black mb-5">
+        <div class="container">
+          <a class="navbar-brand" href="#"><strong>Street Smart</strong></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" onclick="onTraffic()">Start</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="offTraffic()">Stop</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+    <div class="container">
+    
+        <div class="row">
+            <div class="col-6">
+                <h3> Lane 1 </h3>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="emv1">
+                    <label class="custom-control-label" for="emv1">Emergency Vehicle </label>
+                </div>
+                
+                
+                <label for="density1" class="form-label">Vehicle Density </label>
+                <input type="range" class="form-range" min="0" max="100" id="density1">
+            </div>
+            <div class="col-6">
+                <h1><span id="time0" style="color:red; font-weight: 700;"> STOP </span></h1>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-6">
+        <h3> Lane 2 </h3>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="emv2">
+            <label class="custom-control-label" for="emv2">Emergency Vehicle </label>
+        </div>
+        
+        <label for="density2" class="form-label">Vehicle Density </label>
+        <input type="range" class="form-range" min="0" max="100" id="density2">
+    </div>
+    <div class="col-6">
+        <h1><span id="time1" style="color:red; font-weight: 700;"> STOP </span></h1>
+    </div>
+    
+</div>
+        <div class="row">
+            <div class="col-6">
+        <h3> Lane 3 </h3>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="emv3" value="0">
+            <label class="custom-control-label" for="emv3">Emergency Vehicle </label>
+        </div>
+        
+        <label for="density3" class="form-label">Vehicle Density </label>
+        <input type="range" class="form-range" min="0" max="100" id="density3">
+    </div>
+    <div class="col-6">
+        <h1><span id="time2" style="color:red; font-weight: 700;"> STOP </span></h1>
+    </div>
+    
+</div>
+
+        <div class="row">
+            <div class="col-6">
+        <h3> Lane 4 </h3>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="emv4">
+            <label class="custom-control-label" for="emv4">Emergency Vehicle </label>
+        </div>
+        
+        <label for="density4" class="form-label">Vehicle Density </label>
+        <input type="range" class="form-range" min="0" max="100" id="density4">
+    </div>
+    <div class="col-6">
+        <h1><span id="time3" style="color:red; font-weight: 700;"> STOP </span></h1>
+    </div>
+    
+</div>
+
+<div class="row">
+        <div class="col-6">
+    <h3> Pedestrians </h3>
+    <!-- <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="emv4">
+        <label class="custom-control-label" for="emv4">Emergency Vehicle </label>
+    </div>
+
+    <label for="density4" class="form-label">Vehicle Density </label>
+    <input type="range" class="form-range" min="0" max="100" id="density4"> -->
+    </div>
+    <div class="col-6">
+    <h1><span id="time4" style="color:red; font-weight: 700;"> STOP </span></h1>
+    </div>
+
+</div>
+
+<div>
+    <h1>DATA</h1>
+    <p> <span id="data"></span> </p>
+</div>
+    </div>
+
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+
+    <script>
+        function ggg (cur_lane=0,cur_time=45,resp_time=null){
+            var fdata = new FormData();
+            fdata.append('density1', Number(document.getElementById('density1').value))
+            fdata.append('density2', Number(document.getElementById('density2').value))
+            fdata.append('density3', Number(document.getElementById('density3').value))
+            fdata.append('density4', Number(document.getElementById('density4').value))
+            fdata.append('emv1', Number(document.getElementById('emv1').checked))
+            fdata.append('emv2', Number(document.getElementById('emv2').checked))
+            fdata.append('emv3', Number(document.getElementById('emv3').checked)) 
+            fdata.append('emv4', Number(document.getElementById('emv4').checked))
+            fdata.append("cur_lane",cur_lane)
+            fdata.append("cur_time",cur_time)
+            if (resp_time != null){
+                fdata.append("resp_time",resp_time)
+            }
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/traffic', true);
+            xhr.send(fdata);
+            document.getElementById('data').innerHTML=`
+            <h2> Lane 1: ${Number(document.getElementById('density1').value)} </h2> 
+            <h2> Lane 2: ${Number(document.getElementById('density2').value)} </h2> 
+            <h2> Lane 3: ${Number(document.getElementById('density3').value)} </h2> 
+            <h2> Lane 4: ${Number(document.getElementById('density4').value)} </h2> 
+            `
+            return xhr
+        }
+
+
+        intid = null
+        res = null
+        function onTraffic(){
+        var intervalId = window.setInterval(async function(){
+            if (res!= null){
+                a = await ggg(res['cur_lane'], res['cur_time'],res['resp_time']);
+                setTimeout(() => {
+                    res = JSON.parse(a.response);
+                }, 1000);
+                if (res!= null){
+                    document.getElementById('time'+ (res['cur_lane']+4)%5 ).innerHTML = "STOP";
+                    document.getElementById('time'+ (res['cur_lane']+4)%5 ).style.color='red'
+                }
+                document.getElementById('time'+res['cur_lane']).innerHTML = `${res['cur_time']} sec`
+                document.getElementById('time'+res['cur_lane']).style.color='green'
+                console.log(res);
+            }
+            else{
+                a = await ggg();
+                setTimeout(() => {
+                    res = JSON.parse(a.response);
+                }, 1000);
+                console.log(res);
+            }
+
+            }, 2000);
+            intid = intervalId
+        }
+
+        function offTraffic(){
+            clearInterval(intid);
+        }
+            
+    </script>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</body>
+</html>
